@@ -12,4 +12,25 @@
         android:layout_height="wrap_content"
         android:text="Сказать 'Люми'" />
 
+    <Button
+        android:id="@+id/notes_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Заметки"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/calculator_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Калькулятор"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/recorder_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Диктофон"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>
