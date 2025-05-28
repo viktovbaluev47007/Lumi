@@ -1,8 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.lumi.voiceassistant">
 
-    <!-- Разрешение на запись аудио для голосовой активации -->
+    <!-- Разрешения -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lumi">
 
+        <!-- Главный экран -->
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +21,10 @@
             </intent-filter>
         </activity>
 
-        <!-- Добавляй другие активности здесь, когда будут -->
+        <!-- Экран диктофона -->
+        <activity android:name=".RecorderActivity" />
+
+        <!-- Будущие активности можно добавлять ниже -->
 
     </application>
 
