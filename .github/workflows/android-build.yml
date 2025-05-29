@@ -23,6 +23,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build APK with Gradle
+      working-directory: .
       run: ./gradlew assembleDebug
 
     - name: Upload APK artifact
