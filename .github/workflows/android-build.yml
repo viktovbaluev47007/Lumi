@@ -3,7 +3,7 @@ name: Build Lumi APK
 on:
   push:
     branches:
-      - main  # или другая ветка, которую ты используешь
+      - main
 
 jobs:
   build:
@@ -24,6 +24,7 @@ jobs:
 
     - name: Build APK with Gradle
       run: ./gradlew assembleDebug
+      working-directory: ${{ github.workspace }}
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
