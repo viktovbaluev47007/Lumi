@@ -8,10 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        working-directory: .
+    timeout-minutes: 10
 
     steps:
     - name: Checkout code
@@ -24,10 +21,11 @@ jobs:
         java-version: 11
 
     - name: Make gradlew executable
-      run: chmod +x gradlew
+      run: chmod +x ./gradlew
 
     - name: Build APK with Gradle
       run: ./gradlew assembleDebug
+      working-directory: .
 
     - name: Upload APK artifact
       uses: actions/upload-artifact@v4
