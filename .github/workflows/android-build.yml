@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Установить права на Gradle
-        run: chmod +x ./Lumi/gradlew
+        run: chmod +x ./gradlew
 
       - name: Сборка APK
-        run: ./Lumi/gradlew assembleDebug --stacktrace
+        run: ./gradlew assembleDebug --stacktrace
