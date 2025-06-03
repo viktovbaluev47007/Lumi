@@ -25,4 +25,3 @@ jobs:
 
     - name: Build Debug APK
       run: ./gradlew assembleDebug
-      working-directory: Lumi
