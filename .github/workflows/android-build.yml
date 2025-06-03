@@ -15,12 +15,9 @@ jobs:
 
       - name: Grant execute permission to Gradle
         run: chmod +x ./gradlew
-        working-directory: Lumi
 
       - name: Build APK
         run: ./gradlew assembleDebug
-        working-directory: Lumi
 
       - name: List build outputs
         run: ls -R app/build/outputs/apk/debug
-        working-directory: Lumi
