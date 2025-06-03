@@ -1,42 +1,31 @@
-name: Build Lumi APK
+name: Сборка Lumi APK
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Клонировать репозиторий
+        uses: actions/checkout@v3
 
-    - name: Set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        distribution: temurin
-        java-version: 11
+      - name: Установить права на Gradle
+        run: chmod +x ./gradlew
+        working-directory: Lumi
 
-    - name: Make gradlew executable
-      run: chmod +x ./gradlew
-      working-directory: Lumi
+      - name: Сборка APK
+        run: ./gradlew assembleDebug --stacktrace
+        working-directory: Lumi
 
-    - name: Show current directory
-      run: pwd
-
-    - name: List files in Lumi folder
-      run: ls -la
-      working-directory: Lumi
-
-    - name: Build APK with Gradle
-      run: ./gradlew assembleDebug --stacktrace
-      working-directory: Lumi
-
-    - name: Upload APK artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: lumi-debug-apk
-        path: Lumi/app/build/outputs/apk/debug/app-debug.apk
+      - name: Сохранить APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: Lumi-APK
+          path: Lumi/app/build/outputs/apk/debug/app-debug.apk
