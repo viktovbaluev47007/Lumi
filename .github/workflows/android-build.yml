@@ -1,31 +1,26 @@
-name: Сборка Lumi APK
+name: Build Lumi APK
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: Lumi
-
     steps:
-      - name: Клонировать репозиторий
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Установить права на gradlew
+      - name: Grant execute permission to Gradle
         run: chmod +x ./gradlew
+        working-directory: Lumi
 
-      - name: Сборка APK
-        run: ./gradlew assembleDebug --stacktrace
+      - name: Build APK
+        run: ./gradlew assembleDebug
+        working-directory: Lumi
 
-      - name: Загрузка APK
-        uses: actions/upload-artifact@v2.3.1
-        with:
-          name: Lumi-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+      - name: List build outputs
+        run: ls -R app/build/outputs/apk/debug
+        working-directory: Lumi
