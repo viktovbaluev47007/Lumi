@@ -1,0 +1,22 @@
+name: Debug Directory
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  debug-path:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Show current directory and files
+        run: |
+          echo "🟡 Current working directory:"
+          pwd
+          echo "📁 Files in current directory:"
+          ls -la
+          echo "🔍 Checking for Gradle files:"
+          find . -name "build.gradle*" -o -name "settings.gradle*"
