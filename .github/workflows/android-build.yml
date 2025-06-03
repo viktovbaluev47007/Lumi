@@ -2,22 +2,25 @@ name: Build Lumi APK
 
 on:
   push:
-    branches: [ main ]
-  workflow_dispatch:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
+      # без параметра path, чтобы клонировалось в корень /home/runner/work/Lumi
 
-      - name: Grant execute permission to Gradle
-        run: chmod +x ./gradlew
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+      working-directory: ./
 
-      - name: Build APK
-        run: ./gradlew assembleDebug
-
-      - name: List build outputs
-        run: ls -R app/build/outputs/apk/debug
+    - name: Build debug APK
+      run: ./gradlew assembleDebug
+      working-directory: ./
